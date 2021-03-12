@@ -1,8 +1,6 @@
 from flask import Flask, render_template
 import sqlite3
-import pandas as pd
 import os
-import re
 from variables import Variables
 from functions import list_to_str_html, import_db
 app = Flask(__name__)
