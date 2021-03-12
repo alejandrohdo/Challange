@@ -5,13 +5,45 @@
     <title>{{title|safe}}</title>
     <style>
         table, th, td {
+            border-collapse: collapse;
             border: 1px solid black;
+        }
+        td {
+          text-align: center;
+        }
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        li {
+          float: left;
+        }
+
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+          background-color: #111;
         }
     </style>
 </head>
 <body>
-    <a href='/importardata'>1. Importar Data</a><br><a href='/estudiantesactivos'>2. Estudiantes Activos</a>
-           <br><a href='/analiticavideos'>3. Analitica de Videos </a><br>
+    <ul>
+      <li><a href="/importardata">Importar Data</a></li>
+      <li><a href="/estudiantesactivos">Estudiantes Activos</a></li>
+      <li><a href="/analiticavideos">Analitica de Videos</a></li>
+    </ul>
+    <br>
     <div class="output">
         {{content|safe}}
     </div>

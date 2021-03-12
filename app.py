@@ -131,12 +131,12 @@ def act3():
             percentage.append(round(c/t*100, 2))
             if estado_completado:
                 completos += 1
-        result = "<table class='center'><tr><th>Estudiante id</th><th>Nombre</th><th>Curso id</th><th>Curso nombre</th>" \
-                 "<th>progreso (%)</th></tr>"
+        result = "<table class='center'><tr><th>Estudiante id</th><th>Nombre</th><th>Curso id</th>" \
+                 "<th>Curso nombre</th><th>progreso (%)</th></tr>"
         for (n, p, u, c, cn) in zip(nombre, percentage, usiario_ids, curso_id, curso_nombre):
-            result += "<tr><td>" + str(u[0]) + "</td><td>" + n[0] + "</td><td>" + str(c[0]) + "</td><td>" + str(cn[0]) +\
-                      "</td><td>" + str(p) + "</td>"
-            result += "<tr></tr>"
+            result += "<tr><td>" + str(u[0]) + "</td><td>" + n[0] + "</td><td>" + str(c[0]) + "</td><td>" +\
+                      str(cn[0]) + "</td><td>" + str(p) + "</td>"
+            result += "</tr>"
         result += "</table>"
         conn.close()
         Variables.analitica_video = result
