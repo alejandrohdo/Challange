@@ -1,3 +1,5 @@
+from flask import render_template
+
 from variables import *
 import os
 import re
@@ -6,18 +8,25 @@ import pandas as pd
 
 
 def import_db():
-    tables = os.listdir("Data/")
-    regex = re.compile('[^a-zA-Z]')
-    con = sqlite3.connect("database.db")
-    for table in tables:
-        name = table.split('.')[0]
-        name = regex.sub('', name)
-        df = pd.read_excel('Data/{0}'.format(table), sheet_name="Tablib Dataset")
-        df.to_sql(name, con, index=False, if_exists="replace")
-    con.commit()
-    con.close()
-    Variables.estudiantes_activos = None
-    Variables.analitica_video = None
+    files = os.listdir("Data/")
+    tables = []
+    for file in files:
+        if file.endswith(".xls"):
+            tables.append(file)
+    if len(tables) > 0:
+        regex = re.compile('[^a-zA-Z]')
+        con = sqlite3.connect("database.db")
+        for table in tables:
+            name = table.split('.')[0]
+            name = regex.sub('', name)
+            df = pd.read_excel('Data/{0}'.format(table), sheet_name="Tablib Dataset")
+            df.to_sql(name, con, index=False, if_exists="replace")
+        con.commit()
+        con.close()
+        Variables.estudiantes_activos = None
+        Variables.analitica_video = None
+    else:
+        return 1
 
 
 def list_to_str_html(name, inscripcion, vencimiento, gratis, eastado):

@@ -13,7 +13,9 @@ def hello_world():
 
 @app.route('/importardata')
 def act1():
-    import_db()
+    x = import_db()
+    if x:
+        return render_template("index.html", title="Importar Data", content="No New Data")
     return render_template("index.html", title="Importar Data", content="Database Imported")
 
 
